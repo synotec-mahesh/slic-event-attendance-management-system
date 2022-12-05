@@ -1,0 +1,1 @@
+# slic-event-attendance-management-system

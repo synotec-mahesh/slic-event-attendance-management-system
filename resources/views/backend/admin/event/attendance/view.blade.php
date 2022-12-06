@@ -15,11 +15,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add Events</h1>
+                    <h1>Attendance</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Add Events</li>
                         <li class="breadcrumb-item active">Add Events</li>
                     </ol>
                 </div>
@@ -43,39 +44,46 @@
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Venue</th>
-                                        <th>Date & Time</th>
-                                        <th>Response Message</th>
-                                        <th>Input text</th>
-                                        <th>Action</th>
+                                        <th>Advisor Code</th>
+                                        <th>Team Leader Code</th>
+                                        <th>Group Leader Code</th>
+                                        <th>EPF</th>
+                                        <th>Name</th>
+                                        <th>NIC</th>
+                                        <th>Branch</th>
+                                        <th>Region</th>
+                                        <th>Chek In Time</th>
+                                        <th>Table No</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($events as $event)
+                                    @foreach ($attendances as $attendance)
                                         <tr>
-                                            <td>{{ $event->title }}</td>
-                                            <td>{{ $event->venue }}</td>
-                                            <td>{{ $event->date }}</td>
-                                            <td>{{ $event->message }}</td>
-                                            <td>{{ $event->input_text }}</td>
+                                            <td>{{ $attendance->advisor_code }}</td>
+                                            <td>{{ $attendance->team_leader_code }}</td>
+                                            <td>{{ $attendance->group_leader_code }}</td>
+                                            <td>{{ $attendance->epf }}</td>
+                                            <td>{{ $attendance->name }}</td>
+                                            <td>{{ $attendance->nic }}</td>
+                                            <td>{{ $attendance->branch }}</td>
+                                            <td>{{ $attendance->region }}</td>
+                                            <td>{{ $attendance->chek_in_time }}</td>
+                                            <td>{{ $attendance->table_no }}</td>
                                             <td>
                                                 
-                                                    <a href="{{ url('admin/event/' . $event->id . '/edit') }}"
+                                                    <a href="{{ url('admin/event/'.$event->id.'/attendance/' . $attendance->id . '/edit') }}"
                                                         class="btn btn-app" id="edit-btn">
                                                         <i class="fas fa-edit" id="edit-fa-btn"></i></a>
 
                                                     <form class="delete-form"
-                                                        action="{{ url('admin/event/' . $event->id . '/delete') }}"
+                                                        action="{{ url('admin/event/'.$event->id.'/attendance/' . $attendance->id . '/delete') }}"
                                                         method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                         <button type="submit" class="show_confirm delete-btn" data-toggle="tooltip" title='Delete' value="Delete"><i class="fa fa-trash" id="fa_font"></i></button>
                                                     </form>
 
-                                                    <a href="{{ url('admin/event/' . $event->id . '/attendance') }}"
-                                                        class="btn btn-app" id="edit-btn">
-                                                        <i class="fas fa-envelope" id="edit-fa-btn"></i></a>
+                                                 
                                                 
                                             </td>
                                         </tr>
@@ -83,12 +91,16 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Venue</th>
-                                        <th>Date & Time</th>
-                                        <th>Response Message</th>
-                                        <th>Input text</th>
-                                        <th>Action</th>
+                                        <th>Advisor Code</th>
+                                        <th>Team Leader Code</th>
+                                        <th>Group Leader Code</th>
+                                        <th>EPF</th>
+                                        <th>Name</th>
+                                        <th>NIC</th>
+                                        <th>Branch</th>
+                                        <th>Region</th>
+                                        <th>Chek In Time</th>
+                                        <th>Table No</th>
                                     </tr>
                                 </tfoot>
                             </table>

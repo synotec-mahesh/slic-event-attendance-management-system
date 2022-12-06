@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventFormRequest;
 use App\Imports\EventImport;
+use App\Models\Attendance;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -72,4 +73,21 @@ class EventController extends Controller
         Event::where('id', $eventId)->delete();
         return redirect()->back();
     }
+
+    public function attendance($eventId)
+    {
+        $event = Event::findOrFail($eventId);
+        $attendances = $event->attendance;
+    
+        return view('backend.admin.event.attendance.view', compact('attendances','event'));
+    }
+
+    public function attendanceEdit($attendanceId)
+    {
+        $attendance = Attendance::find($attendanceId);
+        return view('backend.admin.event.attendance.edit', compact('attendance'));
+    }
+
+
+
 }

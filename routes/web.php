@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\EventController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
 
 Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
+    
     Route::controller(EventController::class)->group(function () {
         Route::get('/create-event', 'index');
         Route::post('/event', 'store');
@@ -35,5 +37,12 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('/event/{eventId}', 'update');
         Route::delete('/event/{eventId}/delete', 'destroy');
 
+        Route::get('/event/{eventId}/attendance', 'attendance');
+
+        Route::get('/event/{eventId}/attendance/{attendanceId}/edit', 'attendanceEdit');
+        Route::put('/event/{eventId}/attendance/{attendanceId}', 'attendanceUpdate');
+        Route::delete('/event/{eventId}/attendance/{attendanceId}/delete', 'attendanceDestroy');
     });
+
+   
 });

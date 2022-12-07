@@ -47,15 +47,15 @@ class EventImport implements ToCollection, WithHeadingRow,WithValidation
     public function rules(): array
     {
         return [
-            'advisor_code' => 'required',
-            'team_leader_code' => 'required',
-            'group_leader_code' => 'required',
+            'advisor_code' => 'nullable',
+            'team_leader_code' => 'nullable',
+            'group_leader_code' => 'nullable',
             'epf' => 'required',
             'name' => 'required',
             'nic' => 'required',
             'branch' => 'required',
             'region' => 'required',
-            'chek_in_time' => 'required',
+            'chek_in_time' => 'nullable',
             'table_no' => 'required',
             'event_id'=>'nullable',
         ];

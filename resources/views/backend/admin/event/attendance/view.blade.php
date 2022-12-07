@@ -31,6 +31,7 @@
 
 
 @section('content')
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -38,6 +39,16 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                        </div>
+                        <div>
+                            @if (session('message'))
+                            <h2 class="alert alert-success">{{ session('message') }}</h2>
+                        @endif
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <div>{{ $error }}</div>
+                            @endforeach
+                        @endif
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -54,6 +65,7 @@
                                         <th>Region</th>
                                         <th>Chek In Time</th>
                                         <th>Table No</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -70,20 +82,20 @@
                                             <td>{{ $attendance->chek_in_time }}</td>
                                             <td>{{ $attendance->table_no }}</td>
                                             <td>
-                                                
-                                                    <a href="{{ url('admin/event/'.$event->id.'/attendance/' . $attendance->id . '/edit') }}"
+                                                <div id="one_line">
+                                                    <a href="{{ url('admin/event/'.$event->id.'/' . $attendance->id . '/edit') }}"
                                                         class="btn btn-app" id="edit-btn">
                                                         <i class="fas fa-edit" id="edit-fa-btn"></i></a>
 
                                                     <form class="delete-form"
-                                                        action="{{ url('admin/event/'.$event->id.'/attendance/' . $attendance->id . '/delete') }}"
+                                                        action="{{ url('admin/event/attendance/' . $attendance->id . '/delete') }}"
                                                         method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                         <button type="submit" class="show_confirm delete-btn" data-toggle="tooltip" title='Delete' value="Delete"><i class="fa fa-trash" id="fa_font"></i></button>
                                                     </form>
 
-                                                 
+                                                </div>
                                                 
                                             </td>
                                         </tr>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LotsFormRequest extends FormRequest
+class AttendanceFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,53 +24,45 @@ class LotsFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'sales_no' => [
+            'advisor_code'     => [
                 'required',
-                'integer'
+                'string',
             ],
-            'sales_date' => [
+            'team_leader_code'     => [
                 'required',
-                'date'
+                'string',
             ],
-            'lot_no' => [
-                'integer',
-            ],
-            
-            'estate_code' => [
+            'group_leader_code'     => [
                 'required',
-                'string'
+                'string',
             ],
-            'selling_mark' => [
+            'epf'     => [
                 'required',
-                'string'
+                'string',
             ],
-            'inv_no' => [
+            'name'     => [
                 'required',
-                'string'
+                'string',
             ],
-            'grade' => [
+            'nic'     => [
                 'required',
-                'string'
+                'string',
             ],
-            'packing' => [
+            'branch'     => [
                 'required',
-                'integer'
+                'string',
             ],
-            'ches_weight' => [
+            'region'     => [
                 'required',
-                'integer'
+                'string',
             ],
-            'quantity' => [
+            'chek_in_time'     => [
                 'required',
-                'integer'
+                'string',
             ],
-            'catalog' => [
+            'table_no'     => [
                 'required',
-                'string'
-            ],
-            'plantation' => [
-                'required',
-                'string'
+                'string',
             ],
         ];
     }

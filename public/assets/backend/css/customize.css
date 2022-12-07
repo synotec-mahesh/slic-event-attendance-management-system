@@ -31,3 +31,7 @@
 .delete-btn:hover{
     box-sizing: border-box;
 }
+
+#one_line{
+    display: inline-flex;
+}

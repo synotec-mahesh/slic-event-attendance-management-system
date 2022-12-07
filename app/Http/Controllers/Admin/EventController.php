@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AttendanceFormRequest;
 use App\Http\Requests\EventFormRequest;
 use App\Imports\EventImport;
 use App\Models\Attendance;
@@ -64,7 +65,7 @@ class EventController extends Controller
 
         $event->update();
 
-        return redirect()->back()->with('message', 'Updated Successfully'); 
+        return redirect('admin/view-event')->with('message', 'Updated Successfully'); 
     }
 
     
@@ -82,12 +83,42 @@ class EventController extends Controller
         return view('backend.admin.event.attendance.view', compact('attendances','event'));
     }
 
-    public function attendanceEdit($attendanceId)
+    public function attendanceEdit($eventId,$attendanceId)
     {
+       
         $attendance = Attendance::find($attendanceId);
-        return view('backend.admin.event.attendance.edit', compact('attendance'));
+        $event = Event::find($eventId);
+        return view('backend.admin.event.attendance.edit', compact('attendance','event'));
+    }
+
+    public function attendanceUpdate(AttendanceFormRequest $request,$eventId,$attendanceId)
+    {
+        $validateData = $request->validated();
+
+        $attendances = Attendance::findOrFail($attendanceId);
+        
+        $attendances->advisor_code = $validateData['advisor_code'];
+        $attendances->team_leader_code = $validateData['team_leader_code'];
+        $attendances->group_leader_code = $validateData['group_leader_code'];
+        $attendances->epf = $validateData['epf'];
+        $attendances->name = $validateData['name'];
+        $attendances->nic = $validateData['nic'];
+        $attendances->branch = $validateData['branch'];
+        $attendances->region = $validateData['region'];
+        $attendances->chek_in_time = $validateData['chek_in_time'];
+        $attendances->table_no = $validateData['table_no'];
+
+      
+        $attendances->update();
+
+        return redirect('admin/event/'.$eventId.'/attendance/')->with('message', 'Updated Successfully'); 
     }
 
 
+    public function attendanceDestroy($attendanceId)
+    {
+        Attendance::where('id', $attendanceId)->delete();
+        return redirect()->back();
+    }
 
 }

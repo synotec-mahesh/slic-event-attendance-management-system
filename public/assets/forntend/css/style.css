@@ -1,0 +1,154 @@
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 100%;
+    background-color:#FFBF00;
+    color: #6d6d6d;
+    padding: 5px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size:30px;
+    margin-top: 34px;
+  }
+  
+  input[type=submit]:hover {
+    background-color:#F5B041;
+  }
+  
+
+  .topic h1{
+        text-align: center;
+  }
+
+
+ .main{
+    padding: 15px 20px;
+    border-radius: 25px;
+    background-color: #00adbb;
+   
+ }
+
+
+ .category{
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: #6d6d6d ;
+  margin-top: 15px;
+  border-radius: 15px;
+ }
+
+ 
+
+
+ 
+.form-details{
+  
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  margin-top: 17px;
+  
+}
+h1{
+  color: white;
+  font-size: 36px;
+  font-weight: bold;     
+}
+
+/* popup box section */
+.popup{
+   /* width: 350px; */
+  background:#F5B041 ;
+  border-radius: 20px;  
+  text-align: center;    
+} 
+.open-popup{
+  visibility: visible;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(1);
+} 
+.popup h2{
+font-size: 25px;
+font-weight: 500;
+margin: 30px 0 10px;
+color: #00adbb;
+} 
+.popup button{
+  width: 100%;
+  margin-top: 50px;
+  padding: 10px 0;
+  border: 0;
+  outline: none;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  
+}
+
+
+h2{
+  font-size: 22px;
+}
+h3{
+  color: #2E4053;
+  font-size: 23px;
+}
+
+.popup button{
+  width: 50%;
+  margin-top: 50px;
+  padding: 10px 0;
+  border: 0;
+  outline: none;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+
+
+
+
+  border: none;
+  color: white;
+  padding: 30px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  
+} 
+
+.logo{
+  padding: 9px 35px 0px 35px;
+}
+
+
+
+/*model*/
+
+.modal-body {
+  background-color:#F5B041;
+}
+
+.modal-footer{
+  background-color:#F5B041;
+}
+
+.modal-body{
+  border-radius: 15px;
+}
+
+

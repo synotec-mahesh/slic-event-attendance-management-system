@@ -25,15 +25,15 @@ class AttendanceFormRequest extends FormRequest
     {
         return [
             'advisor_code'     => [
-                'required',
+                'nullable',
                 'string',
             ],
             'team_leader_code'     => [
-                'required',
+                'nullable',
                 'string',
             ],
             'group_leader_code'     => [
-                'required',
+                'nullable',
                 'string',
             ],
             'epf'     => [
@@ -57,7 +57,7 @@ class AttendanceFormRequest extends FormRequest
                 'string',
             ],
             'chek_in_time'     => [
-                'required',
+                'nullable',
                 'string',
             ],
             'table_no'     => [

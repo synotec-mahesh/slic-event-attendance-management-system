@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Forntend\ForntendEventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,3 +47,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
    
 });
+
+
+Route::get('/event/{eventId}', [ForntendEventController::class, 'index']);
+Route::post('/event/{eventId}/check', [ForntendEventController::class, 'checkUser']);

@@ -113,6 +113,8 @@
                                         <th>Region</th>
                                         <th>Chek In Time</th>
                                         <th>Table No</th>
+                                        <th>Action</th>
+
                                     </tr>
                                 </tfoot>
                             </table>

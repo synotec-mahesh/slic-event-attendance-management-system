@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Forntend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CustomerFormRequest;
 use App\Models\Attendance;
+use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Response;
@@ -12,57 +15,66 @@ class ForntendEventController extends Controller
 {
     public function index($eventId)
     {
-
         $events = Event::find($eventId);
-        return view('frontend.event.index', compact('events'));
-
-        // return Response::json(array(
-        //     'events' => $events,
-        // ));
+        $categories = Category::all();
+        return view('frontend.event.index', compact('events', 'categories'));
     }
 
-
-
-    // public function checkUser($eventId)
-    // {
-    //     $events = Event::find($eventId);
-    //     $attendances= $events->attendance;
-    // }
-
-
-    public function checkUser(Request $request, $eventId)
+    public function checkIn(Request $request)
     {
-        dd($eventId);
-        //     $events = Event::where('id',$eventId)->first();
-        //     $attendance= $events->attendance;
+        if ($request->category == 'advisor_code') {
+            $Attendance = Attendance::where('event_id', $request->event_id)
+                ->where('advisor_code', $request->advisor_code)
+                ->where('nic', $request->nic)
+                ->first();
 
-        //     // $attendance->advisor_code = $request->advisor_code;
-        //     // $attendance->nic = $request->nic;
+            if ($request->event_id == 'event_id' && $request->nic == 'nic' && $request->advisor_code == 'advisor_code') {
+                $Attendance->chek_in_time = date('Y-m-d H:i:s');
+                $Attendance->update();
+            } else {
+                $error = 'Your Advisor Code Or NIC Invalid!';
+                return view('frontend.event.response', compact('error','Attendance'));
+            }
+
+        } elseif ($request->category == 'team_leader_code') {
+            $Attendance = Attendance::where('event_id', $request->event_id)
+                ->where('team_leader_code', $request->advisor_code)
+                ->where('nic', $request->nic)
+                ->first();
+
+            if ($request->event_id == 'event_id' && $request->nic == 'nic' && $request->advisor_code == 'advisor_code') {
+                $Attendance->chek_in_time = date('Y-m-d H:i:s');
+                $Attendance->update();
+            } else {
+                $error = 'Your Advisor Code Or NIC Invalid!';
+                return view('frontend.event.response', compact('error','Attendance'));
+            }
+
+        } elseif ($request->category == 'group_leader_code') {
+            $Attendance = Attendance::where('event_id', $request->event_id)
+                ->where('group_leader_code', $request->advisor_code)
+                ->where('nic', $request->nic)
+                ->first();
+
+            if ($request->event_id == 'event_id' && $request->nic == 'nic' && $request->advisor_code == 'advisor_code') {
+                $Attendance->chek_in_time = date('Y-m-d H:i:s');
+                $Attendance->update();
+            } else {
+                $error = 'Your Advisor Code Or NIC Invalid!';
+                return view('frontend.event.response', compact('error','Attendance'));
+            }
+
+        } else {
+
+            $error = 'Your Advisor Code Or NIC Invalid!';
+            return view('frontend.event.response', compact('error','Attendance'));
+        }
 
 
-        //    $request->validate([
-        //         'advisor_code' => 'required',
-        //         'nic' => 'required',
-        //     ]);
 
-        //     $attendances = $request->only('advisor_code', 'nic');
-
-        //     if ($attendance->attempt($attendances)) {
-        //         return redirect()->back()->with('message','Successfully');
-        //     }
-
-        //     return redirect()->back()->with('message','Oppes! You have entered invalid');
-
-
-        // this will automatically return a 422 error response when request is invalid
-
-        $this->validate($request, ['advisor_code' => 'required']);
-
-        // below is executed when request is valid
-        $advisor_code = $request->advisor_code;
-
-        return response()->json([
-            'message' => "Welcome $advisor_code"
-        ]);
+        return view('frontend.event.response', compact('Attendance'));
     }
+
+
+   
 }

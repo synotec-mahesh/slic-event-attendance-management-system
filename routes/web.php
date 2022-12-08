@@ -50,4 +50,5 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
 
 Route::get('/event/{eventId}', [ForntendEventController::class, 'index']);
-Route::post('/event/{eventId}/check', [ForntendEventController::class, 'checkUser']);
+Route::post('/event/check-in', [ForntendEventController::class, 'checkIn']);
+

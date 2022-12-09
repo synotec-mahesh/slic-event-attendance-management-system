@@ -18,15 +18,19 @@ return new class extends Migration
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->string('advisor_code')->nullable();
-            $table->string('team_leader_code')->nullable();
-            $table->string('group_leader_code')->nullable();
-            $table->string('epf');
+            $table->string('bancassurance_sales_officer')->nullable();
+            $table->string('team_leader')->nullable();
+            $table->string('group_leader')->nullable();
+            $table->string('marketing_executive')->nullable();
+            $table->string('branch_manager')->nullable();
+            $table->string('regional_manager')->nullable();
+            $table->string('head_office_unit')->nullable();
             $table->string('name');
             $table->string('nic');
             $table->string('branch');
             $table->string('region');
-            $table->string('chek_in_time')->nullable();
             $table->string('table_no');
+            $table->string('chek_in_time')->nullable();
             $table->timestamps();
         });
     }

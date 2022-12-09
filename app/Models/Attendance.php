@@ -16,15 +16,19 @@ class Attendance extends Model
     
         'event_id',
         'advisor_code',
-        'team_leader_code',
-        'group_leader_code',
-        'epf',
+        'bancassurance_sales_officer',
+        'team_leader',
+        'group_leader',
+        'marketing_executive',
+        'branch_manager',
+        'regional_manager',
+        'head_office_unit',
         'name',
         'nic',
         'branch',
         'region',
-        'chek_in_time',
         'table_no',
+        'chek_in_time',
        
     ];
 

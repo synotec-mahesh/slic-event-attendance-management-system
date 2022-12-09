@@ -19,7 +19,7 @@
     background-color: #f8f9fa;
     border: 1px solid #ddd;
     color: #6c757d;
-    font-size: 13px;
+    font-size: 12px;
     height: 26px;
     margin: 1px 0px -1px 0px;
     min-width: 38px;
@@ -29,9 +29,18 @@
 }
 
 .delete-btn:hover{
-    box-sizing: border-box;
+    opacity: 0.7;
 }
 
 #one_line{
     display: inline-flex;
+}
+
+#delete_attendance{
+    margin: 0px 0px -1px 3px;
+    height: 25px;
+    font-size: 15px;
+}
+#fa_font{
+    font-size: 13px;
 }

@@ -39,6 +39,14 @@
 
 @section('content')
     <section class="content">
+        @if (session('message'))
+            <h2 class="alert alert-success">{{ session('message') }}</h2>
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">{{ $error }}</div>
+            @endforeach
+        @endif
         <div class="container-fluid">
             <div class="row">
                 <!-- left column -->
@@ -50,14 +58,6 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        @if (session('message'))
-                            <h2 class="alert alert-success">{{ session('message') }}</h2>
-                        @endif
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <div>{{ $error }}</div>
-                            @endforeach
-                        @endif
                         <form action="{{ url('admin/event') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
@@ -66,12 +66,12 @@
                                         <div class="form-group">
                                             <label for="title">Title</label>
                                             <input type="text" name="title" class="form-control" id="title"
-                                                placeholder="Enter title">
+                                                placeholder="Enter title" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="venue">Venue</label>
                                             <input type="text" name="venue" class="form-control" id="venue"
-                                                placeholder="Enter venue">
+                                                placeholder="Enter venue" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -91,14 +91,14 @@
                                         <div class="form-group">
                                             <label for="message">Response Message</label>
                                             <input type="text" name="message" class="form-control" id="message"
-                                                placeholder="Enter message">
+                                                placeholder="Enter message" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="input_text">Input text</label>
                                             <input type="text" name="input_text" class="form-control" id="input_text"
-                                                placeholder="Enter input text">
+                                                placeholder="Enter input text" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -107,7 +107,7 @@
                                             <div class="input-group">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="exampleInputFile"
-                                                        name="attendance_file">
+                                                        name="attendance_file" required>
                                                     <label class="custom-file-label" for="exampleInputFile">Choose
                                                         file</label>
                                                 </div>

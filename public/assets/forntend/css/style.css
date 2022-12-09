@@ -195,7 +195,7 @@ body {
 }
 
 .wrapper .alert_wrap {
-  width: 355px;
+  width: 360px;
   background: #fff;
   position: relative;
 
@@ -297,8 +297,9 @@ body {
 
 #table_no {
   background-color: #71e5ae;
-  padding: 3px 72px;
-  font-size: 28px;
+    padding: 0px 30px;
+    font-size: 36px;
+
 }
 
 .sucess_border {
@@ -346,3 +347,13 @@ body {
   width: 400px;
 }
 
+#info_message{
+  font-size: 25px;
+    font-weight: 600;
+    color: #7a5e3e;
+}
+
+#info_input_text{
+  font-weight: 600;
+  color: #284fe2;
+}

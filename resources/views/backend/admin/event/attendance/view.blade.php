@@ -97,8 +97,7 @@
                                                         <i class="fas fa-edit" id="edit-fa-btn"></i></a>
 
                                                     <form class="delete-form"
-                                                        action="{{ url('admin/event/attendance/' . $attendance->id . '/delete') }}"
-                                                        method="POST">
+                                                        action="{{ url('admin/event/attendance/' . $attendance->id . '/delete') }}" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                         <button type="submit" class="show_confirm delete-btn"
@@ -151,6 +150,40 @@
 
 
 @push('scripts')
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+    $(".show_confirm").each(function() {
+        $(this).on('click', function(e) {
+            e.preventDefault();
+            let form = $(this).parent();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                } else
+
+                {
+                    swal("Error!", "Please try again", "error");
+                }
+            })
+        });
+    });
+</script>
+
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('assets/backend/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -182,36 +215,5 @@
     </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script type="text/javascript">
-        $(".show_confirm").each(function() {
-            $(this).on('click', function(e) {
-                e.preventDefault();
-                let form = $(this).parent();
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                    } else
-
-                    {
-                        swal("Error!", "Please try again", "error");
-                    }
-                })
-            });
-        });
-    </script>
+   
 @endpush

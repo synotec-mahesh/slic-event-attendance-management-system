@@ -37,11 +37,12 @@
                         <option value="{{ $category->coloum_name }}" myTag="{{ $category->input_text }}">{{ $category->category_name }}</option>
                     @endforeach
                 </select>
-                <input type="text" id="setMyTag" />
-                <label class="form-details" id="setMyTag"></label>
+                
+                <label class="form-details" ></label>
+                
                 <center>
 
-                    <label class="form-details"><span></span></label>
+                    <label class="form-details" id="setMyTag"></label>
                     <input type="text" id="advisor_code" name="advisor_code" required="TRUE" />
 
                     <label class="form-details">NIC No.</label>
@@ -68,7 +69,7 @@
         var element = $(this).find('option:selected'); 
         var myTag = element.attr("myTag"); 
 
-        $('#setMyTag').val(myTag); 
+        $('#setMyTag').append(myTag); 
     }); 
 }); 
 

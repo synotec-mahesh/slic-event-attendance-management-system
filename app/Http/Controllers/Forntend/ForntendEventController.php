@@ -22,6 +22,8 @@ class ForntendEventController extends Controller
 
     public function checkIn(Request $request)
     {
+
+       
         if ($request->category == 'advisor_code') {
             $Attendance = Attendance::where('event_id', $request->event_id)
                 ->where('advisor_code', $request->advisor_code)
@@ -33,12 +35,11 @@ class ForntendEventController extends Controller
                 $Attendance->update();
             } else {
                 $error = 'Your Advisor Code Or NIC Invalid!';
-                return view('frontend.event.response', compact('error','Attendance'));
+                return view('frontend.event.response', compact('error', 'Attendance'));
             }
-
-        } elseif ($request->category == 'team_leader_code') {
+        } elseif ($request->category == 'bancassurance_sales_officer') {
             $Attendance = Attendance::where('event_id', $request->event_id)
-                ->where('team_leader_code', $request->advisor_code)
+                ->where('bancassurance_sales_officer', $request->advisor_code)
                 ->where('nic', $request->nic)
                 ->first();
 
@@ -47,12 +48,11 @@ class ForntendEventController extends Controller
                 $Attendance->update();
             } else {
                 $error = 'Your Advisor Code Or NIC Invalid!';
-                return view('frontend.event.response', compact('error','Attendance'));
+                return view('frontend.event.response', compact('error', 'Attendance'));
             }
-
-        } elseif ($request->category == 'group_leader_code') {
+        } elseif ($request->category == 'team_leader') {
             $Attendance = Attendance::where('event_id', $request->event_id)
-                ->where('group_leader_code', $request->advisor_code)
+                ->where('team_leader', $request->advisor_code)
                 ->where('nic', $request->nic)
                 ->first();
 
@@ -61,20 +61,81 @@ class ForntendEventController extends Controller
                 $Attendance->update();
             } else {
                 $error = 'Your Advisor Code Or NIC Invalid!';
-                return view('frontend.event.response', compact('error','Attendance'));
+                return view('frontend.event.response', compact('error', 'Attendance'));
             }
+        } elseif ($request->category == 'group_leader') {
+            $Attendance = Attendance::where('event_id', $request->event_id)
+                ->where('group_leader', $request->advisor_code)
+                ->where('nic', $request->nic)
+                ->first();
 
+            if ($request->event_id == 'event_id' && $request->nic == 'nic' && $request->advisor_code == 'advisor_code') {
+                $Attendance->chek_in_time = date('Y-m-d H:i:s');
+                $Attendance->update();
+            } else {
+                $error = 'Your Advisor Code Or NIC Invalid!';
+                return view('frontend.event.response', compact('error', 'Attendance'));
+            }
+        } elseif ($request->category == 'marketing_executive') {
+            $Attendance = Attendance::where('event_id', $request->event_id)
+                ->where('marketing_executive', $request->advisor_code)
+                ->where('nic', $request->nic)
+                ->first();
+
+            if ($request->event_id == 'event_id' && $request->nic == 'nic' && $request->advisor_code == 'advisor_code') {
+                $Attendance->chek_in_time = date('Y-m-d H:i:s');
+                $Attendance->update();
+            } else {
+                $error = 'Your Advisor Code Or NIC Invalid!';
+                return view('frontend.event.response', compact('error', 'Attendance'));
+            }
+        } elseif ($request->category == 'branch_manager') {
+            $Attendance = Attendance::where('event_id', $request->event_id)
+                ->where('branch_manager', $request->advisor_code)
+                ->where('nic', $request->nic)
+                ->first();
+
+            if ($request->event_id == 'event_id' && $request->nic == 'nic' && $request->advisor_code == 'advisor_code') {
+                $Attendance->chek_in_time = date('Y-m-d H:i:s');
+                $Attendance->update();
+            } else {
+                $error = 'Your Advisor Code Or NIC Invalid!';
+                return view('frontend.event.response', compact('error', 'Attendance'));
+            }
+        } elseif ($request->category == 'regional_manager') {
+            $Attendance = Attendance::where('event_id', $request->event_id)
+                ->where('regional_manager', $request->advisor_code)
+                ->where('nic', $request->nic)
+                ->first();
+
+            if ($request->event_id == 'event_id' && $request->nic == 'nic' && $request->advisor_code == 'advisor_code') {
+                $Attendance->chek_in_time = date('Y-m-d H:i:s');
+                $Attendance->update();
+            } else {
+                $error = 'Your Advisor Code Or NIC Invalid!';
+                return view('frontend.event.response', compact('error', 'Attendance'));
+            }
+        } elseif ($request->category == 'head_office_unit') {
+            $Attendance = Attendance::where('event_id', $request->event_id)
+                ->where('head_office_unit', $request->advisor_code)
+                ->where('nic', $request->nic)
+                ->first();
+
+            if ($request->event_id == 'event_id' && $request->nic == 'nic' && $request->advisor_code == 'advisor_code') {
+                $Attendance->chek_in_time = date('Y-m-d H:i:s');
+                $Attendance->update();
+            } else {
+                $error = 'Your Advisor Code Or NIC Invalid!';
+                return view('frontend.event.response', compact('error', 'Attendance'));
+            }
         } else {
 
             $error = 'Your Advisor Code Or NIC Invalid!';
-            return view('frontend.event.response', compact('error','Attendance'));
+            return view('frontend.event.response', compact('error'));
         }
 
 
 
         return view('frontend.event.response', compact('Attendance'));
     }
-
-
-   
 }

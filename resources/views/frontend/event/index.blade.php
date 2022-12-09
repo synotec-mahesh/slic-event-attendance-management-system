@@ -68,8 +68,9 @@
     $("#category").change(function(){ 
         var element = $(this).find('option:selected'); 
         var myTag = element.attr("myTag"); 
-
+        $('#setMyTag').empty(); 
         $('#setMyTag').append(myTag); 
+        $('#setMyTag').change();
     }); 
 }); 
 

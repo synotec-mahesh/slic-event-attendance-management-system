@@ -37,7 +37,7 @@ class EventController extends Controller
         $eventId =  $event->id;
         Excel::import(new EventImport($eventId), $request->file('attendance_file'));
 
-        return redirect()->back()->with('message', 'Added Successfully');
+        return redirect()->back()->with('message', 'Successfully!');
     }
 
     public function view(){
@@ -65,7 +65,7 @@ class EventController extends Controller
 
         $event->update();
 
-        return redirect('admin/view-event')->with('message', 'Updated Successfully'); 
+        return redirect('admin/view-event')->with('message', 'Updated Successfully!'); 
     }
 
     
@@ -98,15 +98,19 @@ class EventController extends Controller
         $attendances = Attendance::findOrFail($attendanceId);
         
         $attendances->advisor_code = $validateData['advisor_code'];
-        $attendances->team_leader_code = $validateData['team_leader_code'];
-        $attendances->group_leader_code = $validateData['group_leader_code'];
-        $attendances->epf = $validateData['epf'];
+        $attendances->bancassurance_sales_officer = $validateData['bancassurance_sales_officer'];
+        $attendances->team_leader = $validateData['team_leader'];
+        $attendances->group_leader = $validateData['group_leader'];
+        $attendances->marketing_executive = $validateData['marketing_executive'];
+        $attendances->branch_manager = $validateData['branch_manager'];
+        $attendances->regional_manager = $validateData['regional_manager'];
+        $attendances->head_office_unit = $validateData['head_office_unit'];
         $attendances->name = $validateData['name'];
         $attendances->nic = $validateData['nic'];
         $attendances->branch = $validateData['branch'];
         $attendances->region = $validateData['region'];
-        $attendances->chek_in_time = $validateData['chek_in_time'];
         $attendances->table_no = $validateData['table_no'];
+        $attendances->chek_in_time = $validateData['chek_in_time'];
 
       
         $attendances->update();

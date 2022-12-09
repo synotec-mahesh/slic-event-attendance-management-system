@@ -23,12 +23,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add Events</h1>
+                    <h1>Edit Attendance</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Add Events</li>
+                        <li class="breadcrumb-item active">Edit Attendance</li>
                     </ol>
                 </div>
             </div>
@@ -65,81 +65,101 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="title">advisor_code</label>
+                                            <label for="title">Advisor</label>
                                             <input type="text" name="advisor_code" class="form-control" id="title"
                                                 placeholder="Enter advisor_code"
                                                 value="{{ old('advisor_code', $attendance->advisor_code) }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="venue">team_leader_code</label>
-                                            <input type="text" name="team_leader_code" class="form-control"
-                                                id="team_leader_code" placeholder="Enter team_leader_code"
-                                                value="{{ old('team_leader_code', $attendance->team_leader_code) }}">
+                                            <label for="">Bancassurance Sales Officer</label>
+                                            <input type="text" name="bancassurance_sales_officer" class="form-control"
+                                                id="bancassurance_sales_officer" placeholder="Enter Code"
+                                                value="{{ old('bancassurance_sales_officer', $attendance->bancassurance_sales_officer) }}">
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="group_leader_code">group_leader_code</label>
-                                            <input type="text" name="group_leader_code" class="form-control"
-                                                id="group_leader_code" placeholder="Enter group_leader_code"
-                                                value="{{ old('group_leader_code', $attendance->group_leader_code) }}">
+                                            <label for="">Team Leader</label>
+                                            <input type="text" name="team_leader" class="form-control"
+                                                id="team_leader" placeholder="Enter Code"
+                                                value="{{ old('team_leader', $attendance->team_leader) }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="venue">team_leader_code</label>
-                                            <input type="text" name="team_leader_code" class="form-control"
-                                                id="team_leader_code" placeholder="Enter team_leader_code"
-                                                value="{{ old('team_leader_code', $attendance->team_leader_code) }}">
+                                            <label for="">Group Leader</label>
+                                            <input type="text" name="group_leader" class="form-control"
+                                                id="group_leader" placeholder="Enter Code"
+                                                value="{{ old('group_leader', $attendance->group_leader) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="epf">epf</label>
-                                            <input type="text" name="epf" class="form-control" id="epf"
-                                                placeholder="Enter epf" value="{{ old('epf', $attendance->epf) }}">
+                                            <label for="">Marketing Executive / APM / PM</label>
+                                            <input type="text" name="marketing_executive" class="form-control"
+                                                id="marketing_executive" placeholder="Enter Code"
+                                                value="{{ old('marketing_executive', $attendance->marketing_executive) }}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="name">name</label>
+                                            <label for="">Branch Manager</label>
+                                            <input type="text" name="branch_manager" class="form-control"
+                                                id="branch_manager" placeholder="Enter Code"
+                                                value="{{ old('branch_manager', $attendance->branch_manager) }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Regional Manager</label>
+                                            <input type="text" name="regional_manager" class="form-control"
+                                                id="regional_manager" placeholder="Enter Code"
+                                                value="{{ old('regional_manager', $attendance->regional_manager) }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Head Office Unit</label>
+                                            <input type="text" name="head_office_unit" class="form-control"
+                                                id="head_office_unit" placeholder="Enter Code"
+                                                value="{{ old('head_office_unit', $attendance->head_office_unit) }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
                                             <input type="text" name="name" class="form-control" id="name"
-                                                placeholder="Enter name" value="{{ old('name', $attendance->name) }}">
+                                                placeholder="Enter name" value="{{ old('name', $attendance->name) }}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nic">Nic</label>
+                                            <input type="text" name="nic" class="form-control" id="nic"
+                                                placeholder="Enter nic" value="{{ old('nic', $attendance->nic) }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="nic">nic</label>
-                                            <input type="text" name="nic" class="form-control" id="nic"
-                                                placeholder="Enter nic" value="{{ old('nic', $attendance->nic) }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="branch">branch</label>
+                                            <label for="branch">Branch</label>
                                             <input type="text" name="branch" class="form-control" id="branch"
                                                 placeholder="Enter branch"
-                                                value="{{ old('branch', $attendance->branch) }}">
+                                                value="{{ old('branch', $attendance->branch) }}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="region">Region</label>
+                                            <input type="text" name="region" class="form-control" id="nic"
+                                                placeholder="Enter region"
+                                                value="{{ old('region', $attendance->region) }}" required>
                                         </div>
                                     </div>
 
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="region">region</label>
-                                            <input type="text" name="region" class="form-control" id="nic"
-                                                placeholder="Enter region"
-                                                value="{{ old('region', $attendance->region) }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="chek_in_time">chek_in_time</label>
+                                            <label for="chek_in_time">Chek In Time</label>
                                             <input type="text" name="chek_in_time" class="form-control" id="chek_in_time"
                                                 placeholder="Enter chek_in_time"
                                                 value="{{ old('chek_in_time', $attendance->chek_in_time) }}">
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="table_no">table_no</label>
+                                            <label for="table_no">Table Number</label>
                                             <input type="text" name="table_no" class="form-control" id="table_no"
                                                 placeholder="Enter table_no"
-                                                value="{{ old('table_no', $attendance->table_no) }}">
+                                                value="{{ old('table_no', $attendance->table_no) }}" required>
                                         </div>
                                     </div>
 

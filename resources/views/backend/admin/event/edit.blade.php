@@ -23,12 +23,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Add Events</h1>
+                    <h1>Edit Events</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Add Events</li>
+                        <li class="breadcrumb-item active">Edit Events</li>
                     </ol>
                 </div>
             </div>
@@ -67,12 +67,12 @@
                                         <div class="form-group">
                                             <label for="title">Title</label>
                                             <input type="text" name="title" class="form-control" id="title"
-                                                placeholder="Enter title" value="{{ old('title', $event->title) }}">
+                                                placeholder="Enter title" value="{{ old('title', $event->title) }}" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="venue">Venue</label>
                                             <input type="text" name="venue" class="form-control" id="venue"
-                                                placeholder="Enter venue" value="{{ old('venue', $event->venue) }}">
+                                                placeholder="Enter venue" value="{{ old('venue', $event->venue) }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -93,7 +93,7 @@
                                         <div class="form-group">
                                             <label for="message">Response Message</label>
                                             <input type="text" name="message" class="form-control" id="message"
-                                                value="{{ old('message', $event->message) }}" placeholder="Enter message">
+                                                value="{{ old('message', $event->message) }}" placeholder="Enter message" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -101,7 +101,7 @@
                                             <label for="input_text">Input text</label>
                                             <input type="text" name="input_text" class="form-control" id="input_text"
                                                 value="{{ old('input_text', $event->input_text) }}"
-                                                placeholder="Enter input text">
+                                                placeholder="Enter input text" required>
                                         </div>
                                     </div>
 

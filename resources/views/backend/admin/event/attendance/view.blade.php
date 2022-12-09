@@ -20,8 +20,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Add Events</li>
-                        <li class="breadcrumb-item active">Add Events</li>
+                        <li class="breadcrumb-item active">Events</li>
+                        <li class="breadcrumb-item active">Attendance </li>
                     </ol>
                 </div>
             </div>
@@ -33,38 +33,43 @@
 @section('content')
 
     <section class="content">
+        @if (session('message'))
+        <h2 class="alert alert-success">{{ session('message') }}</h2>
+    @endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">{{ $error }}</div>
+        @endforeach
+    @endif
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                            <h3 class="card-title"></h3>
                         </div>
                         <div>
-                            @if (session('message'))
-                            <h2 class="alert alert-success">{{ session('message') }}</h2>
-                        @endif
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <div>{{ $error }}</div>
-                            @endforeach
-                        @endif
+                           
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Advisor Code</th>
-                                        <th>Team Leader Code</th>
-                                        <th>Group Leader Code</th>
-                                        <th>EPF</th>
+                                        <th>Advisor</th>
+                                        <th>Bancassurance Sales Officer</th>
+                                        <th>Team Leader</th>
+                                        <th>Group Leader</th>
+                                        <th>Marketing Executive / APM / PM</th>
+                                        <th>Branch Manager</th>
+                                        <th>Regional Manager</th>
+                                        <th>Head Office Unit</th>
                                         <th>Name</th>
                                         <th>NIC</th>
                                         <th>Branch</th>
                                         <th>Region</th>
-                                        <th>Chek In Time</th>
                                         <th>Table No</th>
+                                        <th>Chek In Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -72,19 +77,22 @@
                                     @foreach ($attendances as $attendance)
                                         <tr>
                                             <td>{{ $attendance->advisor_code }}</td>
-                                            <td>{{ $attendance->team_leader_code }}</td>
-                                            <td>{{ $attendance->group_leader_code }}</td>
-                                            <td>{{ $attendance->epf }}</td>
+                                            <td>{{ $attendance->bancassurance_sales_officer }}</td>
+                                            <td>{{ $attendance->team_leader }}</td>
+                                            <td>{{ $attendance->group_leader }}</td>
+                                            <td>{{ $attendance->marketing_executive }}</td>
+                                            <td>{{ $attendance->branch_manager }}</td>
+                                            <td>{{ $attendance->regional_manager }}</td>
+                                            <td>{{ $attendance->head_office_unit }}</td>
                                             <td>{{ $attendance->name }}</td>
                                             <td>{{ $attendance->nic }}</td>
                                             <td>{{ $attendance->branch }}</td>
                                             <td>{{ $attendance->region }}</td>
-                                            <td>{{ $attendance->chek_in_time }}</td>
                                             <td>{{ $attendance->table_no }}</td>
+                                            <td>{{ $attendance->chek_in_time }}</td>
                                             <td>
                                                 <div id="one_line">
-                                                    <a href="{{ url('admin/event/'.$event->id.'/' . $attendance->id . '/edit') }}"
-                                                        class="btn btn-app" id="edit-btn">
+                                                    <a href="{{ url('admin/event/' . $event->id . '/' . $attendance->id . '/edit') }}" title='Edit' class="btn btn-app" id="edit-btn">
                                                         <i class="fas fa-edit" id="edit-fa-btn"></i></a>
 
                                                     <form class="delete-form"
@@ -92,29 +100,32 @@
                                                         method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <button type="submit" class="show_confirm delete-btn" data-toggle="tooltip" title='Delete' value="Delete"><i class="fa fa-trash" id="fa_font"></i></button>
+                                                        <button type="submit" class="show_confirm delete-btn" id="delete_attendance" data-toggle="tooltip" title='Delete' value="Delete"><i class="fa fa-trash" id="fa_font"></i></button>
                                                     </form>
 
                                                 </div>
-                                                
+
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Advisor Code</th>
-                                        <th>Team Leader Code</th>
-                                        <th>Group Leader Code</th>
-                                        <th>EPF</th>
+                                        <th>Advisor</th>
+                                        <th>Bancassurance Sales Officer</th>
+                                        <th>Team Leader</th>
+                                        <th>Group Leader</th>
+                                        <th>Marketing Executive / APM / PM</th>
+                                        <th>Branch Manager</th>
+                                        <th>Regional Manager</th>
+                                        <th>Head Office Unit</th>
                                         <th>Name</th>
                                         <th>NIC</th>
                                         <th>Branch</th>
                                         <th>Region</th>
-                                        <th>Chek In Time</th>
                                         <th>Table No</th>
+                                        <th>Chek In Time</th>
                                         <th>Action</th>
-
                                     </tr>
                                 </tfoot>
                             </table>
@@ -167,7 +178,7 @@
     </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="text/javascript">
         $(".show_confirm").each(function() {

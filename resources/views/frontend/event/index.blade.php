@@ -34,13 +34,14 @@
                 <select class="category" name="category" id="category" required="TRUE">
                     <option value="">Selecte Category</option>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->coloum_name }}">{{ $category->category_name }}</option>
+                        <option value="{{ $category->coloum_name }}" myTag="{{ $category->input_text }}">{{ $category->category_name }}</option>
                     @endforeach
                 </select>
-
+                <input type="text" id="setMyTag" />
+                <label class="form-details" id="setMyTag"></label>
                 <center>
 
-                    <label class="form-details">Advisor Code</label>
+                    <label class="form-details"><span></span></label>
                     <input type="text" id="advisor_code" name="advisor_code" required="TRUE" />
 
                     <label class="form-details">NIC No.</label>
@@ -59,6 +60,17 @@
 </body>
 
 <script src="{{ asset('assets/forntend/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- jQuery -->
+<script src="{{ asset('assets/backend/plugins/jquery/jquery.min.js') }}"></script>
+<script>
+    $(function() { 
+    $("#category").change(function(){ 
+        var element = $(this).find('option:selected'); 
+        var myTag = element.attr("myTag"); 
 
+        $('#setMyTag').val(myTag); 
+    }); 
+}); 
 
+</script>
 </html>

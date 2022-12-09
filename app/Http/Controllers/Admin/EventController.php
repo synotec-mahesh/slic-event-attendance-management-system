@@ -115,7 +115,7 @@ class EventController extends Controller
       
         $attendances->update();
 
-        return redirect('admin/event/'.$eventId.'/attendance/')->with('message', 'Updated Successfully'); 
+        return redirect('admin/event/'.$eventId.'/attendance/')->with('message', 'Updated Successfully!'); 
     }
 
 

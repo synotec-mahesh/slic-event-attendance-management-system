@@ -27,8 +27,8 @@
                     <p class="title">Success!</p>
                     <hr class="sucess_border">
                     <p class="info">
-                    <h3>{{ $Attendance->events->message }}</h3>
-                    <h2>{{ $Attendance->events->input_text }}</h2>
+                    <h3 id="info_message">{{ $Attendance->events->message }}</h3>
+                    <h2 id="info_input_text">{{ $Attendance->events->input_text }}</h2>
                     <label type="text" id="table_no">{{ $Attendance->table_no }}</label>
                     </p>
                 </div>

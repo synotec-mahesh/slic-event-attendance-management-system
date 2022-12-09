@@ -34,13 +34,13 @@
 
     <section class="content">
         @if (session('message'))
-        <h2 class="alert alert-success">{{ session('message') }}</h2>
-    @endif
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <div class="alert alert-danger">{{ $error }}</div>
-        @endforeach
-    @endif
+            <h2 class="alert alert-success">{{ session('message') }}</h2>
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">{{ $error }}</div>
+            @endforeach
+        @endif
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -49,7 +49,7 @@
                             <h3 class="card-title"></h3>
                         </div>
                         <div>
-                           
+
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -92,15 +92,18 @@
                                             <td>{{ $attendance->chek_in_time }}</td>
                                             <td>
                                                 <div id="one_line">
-                                                    <a href="{{ url('admin/event/' . $event->id . '/' . $attendance->id . '/edit') }}" title='Edit' class="btn btn-app" id="edit-btn">
+                                                    <a href="{{ url('admin/event/' . $event->id . '/' . $attendance->id . '/edit') }}"
+                                                        title='Edit' class="btn btn-app" id="edit-btn">
                                                         <i class="fas fa-edit" id="edit-fa-btn"></i></a>
 
                                                     <form class="delete-form"
-                                                        action="{{ url('admin/event/attendance/' . $attendance->id . '/delete') }}"
-                                                        method="POST">
+                                                        action="{{ url('admin/event/attendance/' . $attendance->id . '/delete') }}" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <button type="submit" class="show_confirm delete-btn" id="delete_attendance" data-toggle="tooltip" title='Delete' value="Delete"><i class="fa fa-trash" id="fa_font"></i></button>
+                                                        <button type="submit" class="show_confirm delete-btn"
+                                                            id="delete_attendance" data-toggle="tooltip" title='Delete'
+                                                            value="Delete"><i class="fa fa-trash"
+                                                                id="fa_font"></i></button>
                                                     </form>
 
                                                 </div>
@@ -147,6 +150,40 @@
 
 
 @push('scripts')
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript">
+    $(".show_confirm").each(function() {
+        $(this).on('click', function(e) {
+            e.preventDefault();
+            let form = $(this).parent();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                } else
+
+                {
+                    swal("Error!", "Please try again", "error");
+                }
+            })
+        });
+    });
+</script>
+
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('assets/backend/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -178,36 +215,5 @@
     </script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script type="text/javascript">
-        $(".show_confirm").each(function() {
-            $(this).on('click', function(e) {
-                e.preventDefault();
-                let form = $(this).parent();
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                    } else
-
-                    {
-                        swal("Error!", "Please try again", "error");
-                    }
-                })
-            });
-        });
-    </script>
+   
 @endpush

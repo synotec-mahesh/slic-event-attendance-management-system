@@ -31,6 +31,14 @@
 
 @section('content')
     <section class="content">
+        @if (session('message'))
+            <h2 class="alert alert-success">{{ session('message') }}</h2>
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger">{{ $error }}</div>
+            @endforeach
+        @endif
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -60,23 +68,25 @@
                                             <td>{{ $event->message }}</td>
                                             <td>{{ $event->input_text }}</td>
                                             <td>
-                                                
-                                                    <a href="{{ url('admin/event/' . $event->id . '/edit') }}"
-                                                        class="btn btn-app" id="edit-btn">
-                                                        <i class="fas fa-edit" id="edit-fa-btn"></i></a>
 
-                                                    <form class="delete-form"
-                                                        action="{{ url('admin/event/' . $event->id . '/delete') }}"
-                                                        method="POST">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <button type="submit" class="show_confirm delete-btn" data-toggle="tooltip" title='Delete' value="Delete"><i class="fa fa-trash" id="fa_font"></i></button>
-                                                    </form>
+                                                <a href="{{ url('admin/event/' . $event->id . '/edit') }}"
+                                                    class="btn btn-app" id="edit-btn">
+                                                    <i class="fas fa-edit" id="edit-fa-btn"></i></a>
 
-                                                    <a href="{{ url('admin/event/' . $event->id . '/attendance') }}"
-                                                        class="btn btn-app" id="edit-btn">
-                                                        <i class="fas fa-envelope" id="edit-fa-btn"></i></a>
-                                                
+                                                <form class="delete-form"
+                                                    action="{{ url('admin/event/' . $event->id . '/delete') }}"
+                                                    method="POST">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button type="submit" class="show_confirm delete-btn"
+                                                        data-toggle="tooltip" title='Delete' value="Delete"><i
+                                                            class="fa fa-trash" id="fa_font"></i></button>
+                                                </form>
+
+                                                <a href="{{ url('admin/event/' . $event->id . '/attendance') }}"
+                                                    class="btn btn-app" id="edit-btn">
+                                                    <i class="fas fa-envelope" id="edit-fa-btn"></i></a>
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -141,7 +151,7 @@
     </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="text/javascript">
         $(".show_confirm").each(function() {

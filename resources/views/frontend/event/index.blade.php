@@ -24,7 +24,7 @@
 
                 <div class="logo">
                     <img src="{{ asset('assets/forntend/img/logo.png') }}" alt=""
-                        class="img-fluid rounded mx-auto d-block" />
+                        class="img-fluid rounded mx-auto d-block" id="logo_img" />
                 </div>
 
                 <div class="topic">

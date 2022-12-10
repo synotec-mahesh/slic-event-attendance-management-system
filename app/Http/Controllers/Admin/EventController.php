@@ -7,20 +7,22 @@ use App\Http\Requests\AttendanceFormRequest;
 use App\Http\Requests\EventFormRequest;
 use App\Imports\EventImport;
 use App\Models\Attendance;
+use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class EventController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         return view('backend.admin.event.index');
     }
 
     public function store(EventFormRequest $request)
     {
-   
+
 
         $validateData = $request->validated();
 
@@ -30,7 +32,7 @@ class EventController extends Controller
         $event->venue = $validateData['venue'];
         $event->message = $validateData['message'];
         $event->input_text = $validateData['input_text'];
-        
+
 
         $event->save();
 
@@ -40,9 +42,10 @@ class EventController extends Controller
         return redirect()->back()->with('message', 'Successfully!');
     }
 
-    public function view(){
+    public function view()
+    {
         $events = Event::all();
-        return view('backend.admin.event.view',compact('events'));
+        return view('backend.admin.event.view', compact('events'));
     }
 
 
@@ -65,10 +68,10 @@ class EventController extends Controller
 
         $event->update();
 
-        return redirect('admin/view-event')->with('message', 'Updated Successfully!'); 
+        return redirect('admin/view-event')->with('message', 'Updated Successfully!');
     }
 
-    
+
     public function destroy($eventId)
     {
         Event::where('id', $eventId)->delete();
@@ -79,24 +82,24 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($eventId);
         $attendances = $event->attendance;
-    
-        return view('backend.admin.event.attendance.view', compact('attendances','event'));
+
+        return view('backend.admin.event.attendance.view', compact('attendances', 'event'));
     }
 
-    public function attendanceEdit($eventId,$attendanceId)
+    public function attendanceEdit($eventId, $attendanceId)
     {
-       
+
         $attendance = Attendance::find($attendanceId);
         $event = Event::find($eventId);
-        return view('backend.admin.event.attendance.edit', compact('attendance','event'));
+        return view('backend.admin.event.attendance.edit', compact('attendance', 'event'));
     }
 
-    public function attendanceUpdate(AttendanceFormRequest $request,$eventId,$attendanceId)
+    public function attendanceUpdate(AttendanceFormRequest $request, $eventId, $attendanceId)
     {
         $validateData = $request->validated();
 
         $attendances = Attendance::findOrFail($attendanceId);
-        
+
         $attendances->advisor_code = $validateData['advisor_code'];
         $attendances->bancassurance_sales_officer = $validateData['bancassurance_sales_officer'];
         $attendances->team_leader = $validateData['team_leader'];
@@ -112,10 +115,10 @@ class EventController extends Controller
         $attendances->table_no = $validateData['table_no'];
         $attendances->chek_in_time = $validateData['chek_in_time'];
 
-      
+
         $attendances->update();
 
-        return redirect('admin/event/'.$eventId.'/attendance/')->with('message', 'Updated Successfully!'); 
+        return redirect('admin/event/' . $eventId . '/attendance/')->with('message', 'Updated Successfully!');
     }
 
 
@@ -123,6 +126,74 @@ class EventController extends Controller
     {
         Attendance::where('id', $attendanceId)->delete();
         return redirect()->back();
+    }
+
+
+    public function checkAttendance(Request $request, $eventId)
+    {
+        $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->get();
+        $categories = Category::all();
+      
+        return view('backend.admin.event.check-time-attendance',compact('checkTimeAttendances','categories','eventId'));
+    }
+
+    public function checkFilter(Request $request,$eventId)
+    {
+       
+        if ($request->filter == 'advisor_code'){
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('advisor_code')->get();
+            $categories = Category::all();
+            return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
+        }
+        elseif($request->filter == 'bancassurance_sales_officer')
+        {
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('bancassurance_sales_officer')->get();
+            $categories = Category::all();
+            return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
+        }
+        elseif($request->filter == 'team_leader')
+        {
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('team_leader')->get();
+            $categories = Category::all();
+            return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
+        }
+        elseif($request->filter == 'group_leader')
+        {
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('group_leader')->get();
+            $categories = Category::all();
+            return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
+        }
+        elseif($request->filter == 'marketing_executive')
+        {
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('marketing_executive')->get();
+            $categories = Category::all();
+            return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
+        }
+        elseif($request->filter == 'branch_manager')
+        {
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('branch_manager')->get();
+            $categories = Category::all();
+            return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
+        }
+        elseif($request->filter == 'regional_manager')
+        {
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('regional_manager')->get();
+            $categories = Category::all();
+            return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
+        }
+        elseif($request->filter == 'head_office_unit')
+        {
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('head_office_unit')->get();
+            $categories = Category::all();
+            return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
+        }
+        elseif($request->filter == 'all')
+        {
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->get();
+            $categories = Category::all();
+            return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
+        }
+        
     }
 
 }

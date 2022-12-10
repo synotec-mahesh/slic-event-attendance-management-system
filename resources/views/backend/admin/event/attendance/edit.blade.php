@@ -155,6 +155,10 @@
                                                 placeholder="Enter chek_in_time"
                                                 value="{{ old('chek_in_time', $attendance->chek_in_time) }}">
                                         </div>
+                                        
+                                    </div>
+
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="table_no">Table Number</label>
                                             <input type="text" name="table_no" class="form-control" id="table_no"

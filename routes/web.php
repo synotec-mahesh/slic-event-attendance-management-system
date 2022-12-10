@@ -39,6 +39,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::delete('/event/{eventId}/delete', 'destroy');
 
         Route::get('/event/{eventId}/attendance', 'attendance');
+        Route::get('/event/{eventId}/check-attendance', 'checkAttendance');
+        Route::post('/event/{eventId}/check-filter-attendance', 'checkFilter');
 
         Route::get('/event/{eventId}/{attendanceId}/edit', 'attendanceEdit');
         Route::put('/event/{eventId}/{attendanceId}', 'attendanceUpdate');

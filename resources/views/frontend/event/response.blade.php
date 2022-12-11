@@ -16,48 +16,50 @@
 </head>
 
 <body class="background_body">
-    <div class="wrapper">
+  
+        <div class="wrapper">
 
-        @if ($Attendance)
-            <div class="alert_wrap success">
-                <div class="alert_icon">
-                    <ion-icon class="icon" name="checkmark" id="icon_success"></ion-icon>
-                </div>
-                <div class="content">
-                    <p class="title">Success!</p>
-                    <hr class="sucess_border">
-                    <p class="info">
-                    <h3 id="info_message">{{ $Attendance->events->message }}</h3>
-                    <h2 id="info_input_text">{{ $Attendance->events->input_text }}</h2>
-                    <label type="text" id="table_no">{{ $Attendance->table_no }}</label>
-                    </p>
-                </div>
+            @if ($Attendance)
+                <div class="alert_wrap success">
+                    <div class="alert_icon">
+                        <ion-icon class="icon" name="checkmark" id="icon_success"></ion-icon>
+                    </div>
+                    <div class="content">
+                        <p class="title">Success!</p>
+                        <hr class="sucess_border">
+                        <p class="info">
+                        <h3 id="info_message">{{ $Attendance->events->message }}</h3>
+                        <h2 id="info_input_text">{{ $Attendance->events->input_text }}</h2>
+                        <label type="text" id="table_no">{{ $Attendance->table_no }}</label>
+                        </p>
+                    </div>
 
-            </div>
-        @elseif ($error)
-            <div class="alert_wrap error">
-                <div class="alert_icon">
-                    <ion-icon class="icon" name="close" id="icon_error"></ion-icon>
                 </div>
-                <div class="content">
-                    <p class="title" id="error_title">Wrong!</p>
-                    <hr class="error_border">
-                    <p class="info">
-                        <strong class="error_text">{{ $error }}</strong>
-                        
-                    </p>
+            @elseif ($error)
+                <div class="alert_wrap error">
+                    <div class="alert_icon">
+                        <ion-icon class="icon" name="close" id="icon_error"></ion-icon>
+                    </div>
+                    <div class="content">
+                        <p class="title" id="error_title">Wrong!</p>
+                        <hr class="error_border">
+                        <p class="info">
+                            <strong class="error_text">{{ $error }}</strong>
+
+                        </p>
+                    </div>
+
+                    <div>
+                        <a href="{{ URL::previous() }}"> <button>Retry</button></a>
+                    </div>
+
+
+
                 </div>
-               
-                <div>
-                    <a href="{{ URL::previous() }}"> <button>Retry</button></a>
-                 </div>
-                
-              
-                
-            </div>
-        @endif
-    </div>
-    
+            @endif
+        </div>
+   
+
 
 
 </body>

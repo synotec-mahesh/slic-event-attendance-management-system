@@ -46,7 +46,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"></h3>
+                            <h3 class="card-title"><a href="{{ URL::previous() }}"><button type="button" class="btn btn-block btn-outline-warning btn-sm">Back</button></a></h3>
                         </div>
                         <div>
 
@@ -69,7 +69,7 @@
                                         <th>Branch</th>
                                         <th>Region</th>
                                         <th>Table No</th>
-                                        <th>Chek In Time</th>
+                                        <th>Check In Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -127,7 +127,7 @@
                                         <th>Branch</th>
                                         <th>Region</th>
                                         <th>Table No</th>
-                                        <th>Chek In Time</th>
+                                        <th>Check In Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>

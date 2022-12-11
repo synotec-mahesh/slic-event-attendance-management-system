@@ -15,12 +15,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Events</h1>
+                    <h1>Check Attendance</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Events</li>
+                        <li class="breadcrumb-item active">Check Attendance</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +31,9 @@
 
 
 @section('content')
+
     <section class="content">
+
         @if (session('message'))
             <h2 class="alert alert-success">{{ session('message') }}</h2>
         @endif
@@ -44,66 +47,67 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"></h3>
+                            <h3 class="card-title"><a href="{{ url('admin/view-event') }}"><button type="button"
+                                        class="btn btn-block btn-outline-warning btn-sm">Back</button></a></h3>
+                        </div>
+                        <div>
+
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <form action="{{ url('admin/event/' . $eventId . '/check-filter-attendance') }}" class="form-inline"
+                                method="POST">
+                                @csrf
+                                <div class="col-md-6">
+                                    <div class="form-group" id="filter_form">
+                                        <label for="filter" class="col-md-2-sm-2  col-form-label">Filter :</label>
+                                        <select id='approved' class="form-control" id="filter" name="filter"
+                                            placeholder="Product name...">
+                                            <option value="all">All</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->coloum_name }}"
+                                                    myTag="{{ $category->input_text }}">{{ $category->category_name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <button type="submit" class="btn btn-default">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Venue</th>
-                                        <th>Date & Time</th>
-                                        <th>Response Message</th>
-                                        <th>Input text</th>
-                                        <th>Action</th>
+                                        <th>Name</th>
+                                        <th>NIC</th>
+                                        <th>Branch</th>
+                                        <th>Region</th>
+                                        <th>Table No</th>
+                                        <th>Check In Time</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($events as $event)
+                                    @foreach ($checkTimeAttendances as $attendance)
                                         <tr>
-                                            <td>{{ $event->title }}</td>
-                                            <td>{{ $event->venue }}</td>
-                                            <td>{{ $event->date }}</td>
-                                            <td>{{ $event->message }}</td>
-                                            <td>{{ $event->input_text }}</td>
-                                            <td>
+                                            <td>{{ $attendance->name }}</td>
+                                            <td>{{ $attendance->nic }}</td>
+                                            <td>{{ $attendance->branch }}</td>
+                                            <td>{{ $attendance->region }}</td>
+                                            <td>{{ $attendance->table_no }}</td>
+                                            <td>{{ $attendance->chek_in_time }}</td>
 
-                                                <a href="{{ url('admin/event/' . $event->id . '/edit') }}"
-                                                    class="btn btn-app" id="edit-btn" title='Edit'>
-                                                    <i class="fas fa-edit" id="edit-fa-btn"></i></a>
-
-                                                <form class="delete-form"
-                                                    action="{{ url('admin/event/' . $event->id . '/delete') }}"
-                                                    method="POST">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <button type="submit" class="show_confirm delete-btn"
-                                                        data-toggle="tooltip" title='Delete' value="Delete"><i
-                                                            class="fas fa-trash" id="fa_font"></i></button>
-                                                </form>
-
-                                                <a href="{{ url('admin/event/' . $event->id . '/attendance') }}"
-                                                    class="btn btn-app" id="edit-btn" title='View Attendance'>
-                                                    <i class="fas fa-envelope" id="edit-fa-btn"></i></a>
-
-                                                    <a href="{{ url('admin/event/' . $event->id . '/check-attendance') }}"
-                                                        class="btn btn-app" id="edit-btn" title='Check Attendance'>
-                                                        <i class="fas fa-user-check" id="edit-fa-btn"></i></a>
-                                                       
-                                                       
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Venue</th>
-                                        <th>Date & Time</th>
-                                        <th>Response Message</th>
-                                        <th>Input text</th>
-                                        <th>Action</th>
+                                        <th>Name</th>
+                                        <th>NIC</th>
+                                        <th>Branch</th>
+                                        <th>Region</th>
+                                        <th>Table No</th>
+                                        <th>Check In Time</th>
+
                                     </tr>
                                 </tfoot>
                             </table>
@@ -152,40 +156,6 @@
                 "buttons": ["copy", "csv", "excel", "pdf", "print"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-        });
-    </script>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script type="text/javascript">
-        $(".show_confirm").each(function() {
-            $(this).on('click', function(e) {
-                e.preventDefault();
-                let form = $(this).parent();
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                    } else
-
-                    {
-                        swal("Error!", "Please try again", "error");
-                    }
-                })
-            });
         });
     </script>
 @endpush

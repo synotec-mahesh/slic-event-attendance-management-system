@@ -87,11 +87,17 @@
                                                     class="btn btn-app" id="edit-btn" title='View Attendance'>
                                                     <i class="fas fa-envelope" id="edit-fa-btn"></i></a>
 
-                                                    <a href="{{ url('admin/event/' . $event->id . '/check-attendance') }}"
-                                                        class="btn btn-app" id="edit-btn" title='Check Attendance'>
-                                                        <i class="fas fa-user-check" id="edit-fa-btn"></i></a>
-                                                       
-                                                       
+                                                <a href="{{ url('admin/event/' . $event->id . '/check-attendance') }}"
+                                                    class="btn btn-app" id="edit-btn" title='Check Attendance'>
+                                                    <i class="fas fa-user-check" id="edit-fa-btn"></i></a>
+
+                                                    
+                                                    <a href="{{ url('event/' . $event->id) }}" target="_blank" class="btn btn-app" id="edit-btn" title='View Page'>
+                                                        <i class="fas fa-solid fa-eye" id="edit-fa-btn"></i></a>
+                                      
+                                                      
+                                              
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -188,4 +194,20 @@
             });
         });
     </script>
+    {{-- <script>
+        function copy() {
+            // Get the text field
+            var copyText = document.getElementById("myInput");
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.value);
+
+            // Alert the copied text
+            alert("Copied the text: " + copyText.value);
+        }
+    </script> --}}
 @endpush

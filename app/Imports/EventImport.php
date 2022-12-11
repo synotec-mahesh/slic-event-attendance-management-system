@@ -6,9 +6,12 @@ use App\Models\Attendance;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithStartRow;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class EventImport implements ToCollection, WithValidation
+class EventImport implements ToCollection, WithValidation, WithChunkReading, ShouldQueue,WithStartRow
 {
 
     public function  __construct($event_id)
@@ -26,24 +29,23 @@ class EventImport implements ToCollection, WithValidation
             $data = [
 
                 'advisor_code' => $row[0],
-                'bancassurance_sales_officer' => $row[1],
-                'team_leader' => $row[2],
-                'group_leader' => $row[3],
-                'marketing_executive' => $row[4],
-                'branch_manager' => $row[5],
-                'regional_manager' => $row[6],
-                'head_office_unit' => $row[7],
-                'name' => $row[8],
-                'nic' => $row[9],
-                'branch' => $row[10],
-                'region' => $row[11],
-                'table_no' => $row[12],
-                'chek_in_time' => $row[13],
+                'team_leader' => $row[1],
+                'group_leader' => $row[2],
+                'epf' => $row[3],
+                'name' => $row[4],
+                'nic' => $row[5],
+                'branch' => $row[6],
+                'region' => $row[7],
+                'table_no' => $row[8],
+                'chek_in_time' => $row[9],
                'event_id' =>$this->event_id,
 
-            ];
 
+               
+               
+            ];
             
+ 
             Attendance::create($data);
         }
     }
@@ -55,18 +57,29 @@ class EventImport implements ToCollection, WithValidation
             '1' => 'nullable',
             '2' => 'nullable',
             '3' => 'nullable',
-            '4' => 'nullable',
-            '5' => 'nullable',
-            '6' => 'nullable',
-            '7' => 'nullable',
+            '4' => 'required',
+            '5' => 'required',
+            '6' => 'required',
+            '7' => 'required',
             '8' => 'required',
-            '9' => 'required',
-            '10' => 'required',
-            '11' => 'required',
-            '12' => 'required',
-            '13' => 'nullable',
+            '9' => 'nullable',
             'event_id'=>'nullable',
         ];
+    }
+
+    public function startRow(): int 
+    {
+         return 1;
+    }
+
+    public function batchSize(): int
+    {
+        return 500;
+    }
+
+    public function chunkSize(): int
+    {
+        return 500;
     }
     
 }

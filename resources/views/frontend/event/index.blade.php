@@ -43,10 +43,10 @@
                 <center>
 
                     <label class="form-details" id="setMyTag"></label>
-                    <input type="text" id="advisor_code" name="advisor_code" required="TRUE" />
+                    <input type="text" id="code" name="code"/>
 
                     <label class="form-details">NIC No.</label>
-                    <input type="text" id="nic" name="nic" required="TRUE" />
+                    <input type="text" id="nic" name="nic" />
 
                     <input type="hidden" id="event_id" name="event_id" required="TRUE" value="{{ $events->id }}" />
 

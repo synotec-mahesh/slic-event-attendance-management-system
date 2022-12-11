@@ -48,7 +48,7 @@
 
     @include('backend.layouts.scripts')
     @stack('scripts')
-    @livewireScripts
+    {{-- @livewireScripts --}}
 
 </body>
 

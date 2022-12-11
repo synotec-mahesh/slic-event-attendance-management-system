@@ -28,10 +28,7 @@ class AttendanceFormRequest extends FormRequest
                 'nullable',
                 'string',
             ],
-            'bancassurance_sales_officer'     => [
-                'nullable',
-                'string',
-            ],
+           
             'team_leader'     => [
                 'nullable',
                 'string',
@@ -40,19 +37,8 @@ class AttendanceFormRequest extends FormRequest
                 'nullable',
                 'string',
             ],
-            'marketing_executive'     => [
-                'nullable',
-                'string',
-            ],
-            'branch_manager'     => [
-                'nullable',
-                'string',
-            ],
-            'regional_manager'     => [
-                'nullable',
-                'string',
-            ],
-            'head_office_unit'     => [
+            
+            'epf'     => [
                 'nullable',
                 'string',
             ],
@@ -72,14 +58,15 @@ class AttendanceFormRequest extends FormRequest
                 'required',
                 'string',
             ],
-            'table_no'     => [
-                'required',
-                'string',
-            ],
             'chek_in_time'     => [
                 'nullable',
                 'string',
             ],
+            'table_no'     => [
+                'required',
+                'string',
+            ],
+            
         ];
     }
 }

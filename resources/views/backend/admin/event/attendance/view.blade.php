@@ -56,19 +56,15 @@
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Advisor</th>
-                                        <th>Bancassurance Sales Officer</th>
-                                        <th>Team Leader</th>
-                                        <th>Group Leader</th>
-                                        <th>Marketing Executive / APM / PM</th>
-                                        <th>Branch Manager</th>
-                                        <th>Regional Manager</th>
-                                        <th>Head Office Unit</th>
+                                        <th>Advisor / BSO Code</th>
+                                        <th>Team Leader Code</th>
+                                        <th>Group Leader Code</th>
+                                        <th>EPF</th>
                                         <th>Name</th>
                                         <th>NIC</th>
                                         <th>Branch</th>
                                         <th>Region</th>
-                                        <th>Table No</th>
+                                        <th>Table Number</th>
                                         <th>Check In Time</th>
                                         <th>Action</th>
                                     </tr>
@@ -77,13 +73,9 @@
                                     @foreach ($attendances as $attendance)
                                         <tr>
                                             <td>{{ $attendance->advisor_code }}</td>
-                                            <td>{{ $attendance->bancassurance_sales_officer }}</td>
                                             <td>{{ $attendance->team_leader }}</td>
                                             <td>{{ $attendance->group_leader }}</td>
-                                            <td>{{ $attendance->marketing_executive }}</td>
-                                            <td>{{ $attendance->branch_manager }}</td>
-                                            <td>{{ $attendance->regional_manager }}</td>
-                                            <td>{{ $attendance->head_office_unit }}</td>
+                                            <td>{{ $attendance->epf }}</td>
                                             <td>{{ $attendance->name }}</td>
                                             <td>{{ $attendance->nic }}</td>
                                             <td>{{ $attendance->branch }}</td>
@@ -114,19 +106,15 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Advisor</th>
-                                        <th>Bancassurance Sales Officer</th>
-                                        <th>Team Leader</th>
-                                        <th>Group Leader</th>
-                                        <th>Marketing Executive / APM / PM</th>
-                                        <th>Branch Manager</th>
-                                        <th>Regional Manager</th>
-                                        <th>Head Office Unit</th>
+                                        <th>Advisor / BSO Code</th>
+                                        <th>Team Leader Code</th>
+                                        <th>Group Leader Code</th>
+                                        <th>EPF</th>
                                         <th>Name</th>
                                         <th>NIC</th>
                                         <th>Branch</th>
                                         <th>Region</th>
-                                        <th>Table No</th>
+                                        <th>Table Number</th>
                                         <th>Check In Time</th>
                                         <th>Action</th>
                                     </tr>

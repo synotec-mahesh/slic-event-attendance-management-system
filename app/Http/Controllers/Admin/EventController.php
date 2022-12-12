@@ -115,7 +115,7 @@ class EventController extends Controller
 
         $attendances->update();
 
-        return redirect('admin/event/' . $eventId . '/attendance/')->with('message', 'Updated Successfully!');
+        return redirect('admin/event/' . $eventId . '/attendance')->with('message', 'Updated Successfully!');
     }
 
 
@@ -138,27 +138,27 @@ class EventController extends Controller
     {
        
         if ($request->filter == 'advisor_code'){
-            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('advisor_code')->get();
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->where('advisor_code','=',0)->get();
             $categories = Category::all();
             return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
         }
        
         elseif($request->filter == 'team_leader')
         {
-            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('team_leader')->get();
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->where('team_leader','=',0)->get();
             $categories = Category::all();
             return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
         }
         elseif($request->filter == 'group_leader')
         {
-            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('group_leader')->get();
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->where('group_leader','=',0)->get();
             $categories = Category::all();
             return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
         }
        
         elseif($request->filter == 'epf')
         {
-            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->whereNotNull('epf')->get();
+            $checkTimeAttendances = Attendance::where('event_id',$eventId)->whereNotNull('chek_in_time')->where('epf','=',0)->get();
             $categories = Category::all();
             return view('backend.admin.event.filter',compact('checkTimeAttendances','categories','eventId'));
         }

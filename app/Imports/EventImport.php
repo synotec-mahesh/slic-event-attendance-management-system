@@ -27,7 +27,6 @@ class EventImport implements ToCollection, WithValidation, WithChunkReading, Sho
     {
         foreach ($rows as $row) {
             $data = [
-
                 'advisor_code' => $row[0],
                 'team_leader' => $row[1],
                 'group_leader' => $row[2],
@@ -38,11 +37,7 @@ class EventImport implements ToCollection, WithValidation, WithChunkReading, Sho
                 'region' => $row[7],
                 'table_no' => $row[8],
                 'chek_in_time' => $row[9],
-               'event_id' =>$this->event_id,
-
-
-               
-               
+               'event_id' =>$this->event_id,               
             ];
              
             Attendance::create($data);

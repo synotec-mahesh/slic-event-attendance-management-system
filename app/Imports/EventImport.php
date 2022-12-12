@@ -74,12 +74,12 @@ class EventImport implements ToCollection, WithValidation, WithChunkReading, Sho
 
     public function batchSize(): int
     {
-        return 500;
+        return 1000;
     }
 
     public function chunkSize(): int
     {
-        return 500;
+        return 1000;
     }
     
 }

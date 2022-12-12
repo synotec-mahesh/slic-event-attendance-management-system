@@ -39,9 +39,30 @@ class CategorySeeder extends Seeder
             ],
             [
                 'id'             => 4,
-                'category_name'    => 'EPF',
+                'category_name'    => 'Marketing Executive / APM / PM',
                 'coloum_name' => 'epf',
-                'input_text' => 'EPF',
+                'input_text' => 'EPF Number',
+
+            ],
+            [
+                'id'             => 5,
+                'category_name'    => 'Branch Manager',
+                'coloum_name' => 'epf',
+                'input_text' => 'EPF Number',
+
+            ],
+            [
+                'id'             => 6,
+                'category_name'    => 'Regional Manager',
+                'coloum_name' => 'epf',
+                'input_text' => 'EPF Number',
+
+            ],
+            [
+                'id'             => 7,
+                'category_name'    => 'Head Office Unit',
+                'coloum_name' => 'epf',
+                'input_text' => 'EPF Number',
 
             ],
         ];

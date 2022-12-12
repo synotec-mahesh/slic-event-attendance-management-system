@@ -44,8 +44,7 @@ class EventImport implements ToCollection, WithValidation, WithChunkReading, Sho
                
                
             ];
-            
- 
+             
             Attendance::create($data);
         }
     }

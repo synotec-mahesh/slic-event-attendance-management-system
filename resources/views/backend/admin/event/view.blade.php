@@ -69,6 +69,23 @@
                                             <td>{{ $event->input_text }}</td>
                                             <td>
 
+
+                                                <a href="{{ url('admin/event/' . $event->id . '/attendance') }}"
+                                                    class="btn btn-app" id="edit-btn" title='View Attendance'>
+                                                    <i class="fas fa-users" id="edit-fa-btn"></i></a>
+
+                                                   
+
+                                                <a href="{{ url('admin/event/' . $event->id . '/check-attendance') }}"
+                                                    class="btn btn-app" id="edit-btn" title='Check Attendance'>
+                                                    <i class="fas fa-user-check" id="edit-fa-btn"></i></a>
+
+                                                    
+                                                    <a href="{{ url('event/' . $event->id) }}" target="_blank" class="btn btn-app" id="edit-btn" title='View Page'>
+                                                        <i class="fas fa-solid fa-link" id="edit-fa-btn"></i></a>
+
+                                                   
+
                                                 <a href="{{ url('admin/event/' . $event->id . '/edit') }}"
                                                     class="btn btn-app" id="edit-btn" title='Edit'>
                                                     <i class="fas fa-edit" id="edit-fa-btn"></i></a>
@@ -78,22 +95,12 @@
                                                     method="POST">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <button type="submit" class="show_confirm delete-btn"
+                                                    <button type="submit" class="show_confirm delete-btn text-danger"
                                                         data-toggle="tooltip" title='Delete' value="Delete"><i
                                                             class="fas fa-trash" id="fa_font"></i></button>
                                                 </form>
 
-                                                <a href="{{ url('admin/event/' . $event->id . '/attendance') }}"
-                                                    class="btn btn-app" id="edit-btn" title='View Attendance'>
-                                                    <i class="fas fa-envelope" id="edit-fa-btn"></i></a>
-
-                                                <a href="{{ url('admin/event/' . $event->id . '/check-attendance') }}"
-                                                    class="btn btn-app" id="edit-btn" title='Check Attendance'>
-                                                    <i class="fas fa-user-check" id="edit-fa-btn"></i></a>
-
-                                                    
-                                                    <a href="{{ url('event/' . $event->id) }}" target="_blank" class="btn btn-app" id="edit-btn" title='View Page'>
-                                                        <i class="fas fa-solid fa-eye" id="edit-fa-btn"></i></a>
+                                              
                                       
                                                       
                                               

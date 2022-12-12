@@ -32,7 +32,7 @@
                 </div>
 
                 <select class="category" name="category" id="category" required="TRUE">
-                    <option value="">Selecte Category</option>
+                    <option value="">Select Your Category</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->coloum_name }}" myTag="{{ $category->input_text }}">{{ $category->category_name }}</option>
                     @endforeach
